@@ -48,4 +48,51 @@ const questions = [
         }
     },
 
-]
+    {
+        name: `textColorSelection`,
+        message: `What is the color of your logo text?`,
+        type: `list`,
+        choices: ['hexadecimal', 'color keyword']
+    },
+
+    {
+        type: "input",
+        name: "textColor",
+        message: "Enter Text Color Keyword",
+        when: (answer) => {
+            if (answers.textColorChoice === `color keyword`) {
+                return true;
+            }
+            return false;
+        },
+        validate: (answer) => {
+            let answerLowercase = answer.toLowerCase();
+            for (var i = 0, len = colorKeywords.length; i < len; ++i) {
+                if (answerLowercase.indexOf(colorKeywords[i]) != -1) {
+                    return true;
+                }}
+                return console.log("\n Please Enter Color Keyword")
+            }
+        },
+
+        {
+            type: "input",
+            name: "textColor",
+            message: "Enter the hexadecimal number (#CCCCCC)",
+            when: (answers) => {
+                if (answers.textColorChoice === `hexadecimal`) {
+                    return true;
+                }
+                return false;
+            },
+            validate: (answer) => {
+                const hexRegEx = `^#[A-Fa-f0-9]{6}$`
+                if (!answer.match(hexRegEx)) {
+                    return console.log("\n Enter a Valid Hexadecimal")
+                }
+                return true;
+            }
+        },
+];
+
+module.exports = questions;
