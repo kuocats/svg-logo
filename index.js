@@ -1,10 +1,10 @@
-const inquirer = require("inquirer");
-const { Circle, Triangle, Square } = require("./lib/shapes");
+const inquirer = require('inquirer');
+const { Circle, Triangle, Square } = require('./lib/shapes');
 
-const fs = require ("fs");
+const fs = require ('fs');
 const questions = require (`./library/tests/questions.js`);
-const fileName =
-const setShape = 
+//const fileName =
+const setShape = require('./library/tests/createShape.js')
 
 
 function generateLogo(response) {
