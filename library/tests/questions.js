@@ -1,4 +1,4 @@
-const colorSelections = require('./colorKeywords.js')
+const colorChoices = require('./colorChoices')
 
 const questions = [
     {
@@ -10,7 +10,7 @@ const questions = [
 
     {
         name: 'shapeColorSelection',
-        message: 'What is the color of your logo shape? Choose a format:',
+        message: 'What is the color format of your logo shape?',
         type: 'list',
         choices: ['hexadecimal', 'color keyword']       
     },
@@ -27,12 +27,31 @@ const questions = [
         },
 
         validate: (answer) => {
-            let answerLowercase = answer.toLowercase();
-            for (var i=0, len = colorKeywords.length; i < len; ++i) {
-                if (answerLowercase.indexOf(colorKeyword[i]) != -1){
+            let answerLowercase = answer.toLowerCase();
+            for (var i=0, len = colorChoices.length; i < len; ++i) {
+                if (answerLowercase.indexOf(colorChoices[i]) != -1){
                     return true;
                 }}
-            return console.log("/n Please Enter A Valid Keyword Color")
+            return console.log(" Please Enter A Valid Keyword Color")
+        }
+    },
+
+    {
+        type: "input",
+        name: "shapeColor",
+        message: "Enter the hexadecimal number of the shape (#CCCC)",
+        when: (answer) => {
+            if (answers.shapeColorChoice === 'hexadecimal') {
+                return true;
+            }
+            return false;
+        },
+        validate: (answer) => {
+            const hexRegEx ='^#[A-Fa-f0-9]{6}$'
+            if (!answer.match(hexRegEx)) {
+                return console.log("\n Please Enter A Valid Hexadecimal")
+            }
+            return true;
         }
     },
 
@@ -41,7 +60,7 @@ const questions = [
         message: 'What is Logo Text? (Up to 3 Letters Only)',
         type: 'input',
         validate: (answer) => {
-            if (answer.length >3) {
+            if (answer.length > 3) {
                 return console.log("/n Text up to three letters only! Try Again!");
                 }
             return true;
@@ -49,7 +68,7 @@ const questions = [
     },
 
     {
-        name: `textColorSelection`,
+        name: `logoColorSelection`,
         message: `What is the color of your logo text?`,
         type: `list`,
         choices: ['hexadecimal', 'color keyword']
@@ -57,18 +76,18 @@ const questions = [
 
     {
         type: "input",
-        name: "textColor",
+        name: "logoColor",
         message: "Enter Text Color Keyword",
         when: (answer) => {
-            if (answers.textColorChoice === `color keyword`) {
+            if (answers.logoColorSelection === `color keyword`) {
                 return true;
             }
             return false;
         },
         validate: (answer) => {
             let answerLowercase = answer.toLowerCase();
-            for (var i = 0, len = colorKeywords.length; i < len; ++i) {
-                if (answerLowercase.indexOf(colorKeywords[i]) != -1) {
+            for (var i = 0, len = colorChoices.length; i < len; ++i) {
+                if (answerLowercase.indexOf(colorChoices[i]) != -1) {
                     return true;
                 }}
                 return console.log("\n Please Enter Color Keyword")
@@ -77,10 +96,10 @@ const questions = [
 
         {
             type: "input",
-            name: "textColor",
+            name: "logoColor",
             message: "Enter the hexadecimal number (#CCCCCC)",
             when: (answers) => {
-                if (answers.textColorChoice === `hexadecimal`) {
+                if (answers.logoColorSelection === `hexadecimal`) {
                     return true;
                 }
                 return false;

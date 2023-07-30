@@ -1,7 +1,7 @@
 const Shape = require('./shapes.js')
 
 class squareChoice extends Shape {
-    constructor(text, shapeColor, textColor); {
+    constructor(text, shapeColor, textColor) {
         super(text, shapeColor, textColor);
     };
     render() {
