@@ -7,8 +7,8 @@ class circleChoice extends Shape {
     render() {
         return `
         <svg version="1.1"
-            width="400" height="300" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="25" cy="75" r="20"/>
+            width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="150" cy="100" r="20" fill=${this.color} />
             <<text x="150" y="125" font-size="70" text-anchor="middle" fill="${this.textColor}">${this.text}</text>
         </svg>
         `
