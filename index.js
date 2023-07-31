@@ -3,7 +3,7 @@ const { Circle, Triangle, Square } = require('./library/tests/shapes');
 
 const fs = require ('fs');
 const questions = require (`./library/tests/questions.js`);
-//const fileName =
+const fileName = "./examples/logo.svg";
 const setShape = require('./library/tests/createShape.js')
 
 
@@ -16,11 +16,11 @@ function init(){
     inquirer
     .prompt(questions)
     .then((response) => {
-        createLogo(response);
+        generateLogo(response);
         })
     .catch(err => {
-        console.log(err)
-    });
+            console.log(err)
+         });
 }
 
 init();

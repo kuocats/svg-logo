@@ -1,5 +1,5 @@
 
 
-const colorChoices = [ 'yellow', 'blue', 'green', 'red' ]
+const colorChoices = [ 'yellow', 'blue', 'green', 'red', 'white' ]
 
 module.exports = colorChoices;

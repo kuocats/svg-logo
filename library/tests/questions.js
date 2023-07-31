@@ -79,7 +79,7 @@ const questions = [
         name: "logoColor",
         message: "Enter Text Color Keyword",
         when: (answer) => {
-            if (answers.logoColorSelection === `color keyword`) {
+            if (answer.logoColorSelection === `color keyword`) {
                 return true;
             }
             return false;
